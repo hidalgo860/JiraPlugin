@@ -1,0 +1,31 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="quickbaseJira"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="quickbaseJira-resources" name="quickbaseJira Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="quickbaseJira.css" location="/css/quickbaseJira.css"/>
+        <resource type="download" name="quickbaseJira.js" location="/js/quickbaseJira.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>quickbaseJira</context>
+    </web-resource>
+
+    <web-panel name="exportIssueTracker" key="jira-export" location="atl.jira.view.issue.right.context" weight="1000">
+        <context-provider class="com.quickbase.jira.src.IssueExporter"/>
+        <resource name="view" type="velocity" location="export.vm"/>
+        <label key="quickbase-export.title"/>
+    </web-panel>
+
+    
+</atlassian-plugin>

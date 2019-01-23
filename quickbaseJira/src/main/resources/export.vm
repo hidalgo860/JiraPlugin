@@ -1,0 +1,20 @@
+
+<iframe name="hidden_iframe" style="display: none;"></iframe>
+
+<form id="exportForm" action="$issueTrackerLink" target="_blank" method="post">
+
+    #foreach($field in $fieldList)
+        <input type="hidden" name="$field.Id" value="$field.Value">
+    #end
+
+    <input class="aui-button" type="button" name="export" value="Export" onclick="submitForm()" />
+</form>
+
+<script type="text/javascript">
+
+    function submitForm() {
+
+        $("#exportForm").submit();
+    };
+
+</script>
